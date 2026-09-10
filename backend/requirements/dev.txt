@@ -1,0 +1,9 @@
+# Development & CI dependencies (includes runtime deps).
+-r base.txt
+
+ruff>=0.6
+mypy>=1.11
+pytest>=8.3
+pytest-cov>=5.0
+pytest-asyncio>=0.24
+pre-commit>=3.8

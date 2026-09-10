@@ -1,0 +1,15 @@
+# CODEOWNERS — GitHub auto-requests reviews from owners when their area changes.
+# Replace the placeholder usernames/teams with real GitHub handles.
+# Format: <path pattern> <owner(s)>
+
+# Default owners for everything (tech lead / senior devs)
+*                   @your-org/tech-leads
+
+# Area ownership
+/frontend/          @your-org/frontend-team
+/backend/           @your-org/backend-team
+/infra/             @your-org/tech-leads
+/.github/           @your-org/tech-leads
+
+# DB migrations are high-risk: always reviewed by backend owners
+/backend/alembic/   @your-org/backend-team @your-org/tech-leads

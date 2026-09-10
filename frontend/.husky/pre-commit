@@ -1,0 +1,2 @@
+# Runs on every commit touching frontend files: auto-format + lint staged files.
+cd frontend && npx lint-staged

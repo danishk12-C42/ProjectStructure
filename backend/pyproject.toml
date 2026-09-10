@@ -1,0 +1,33 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "FastAPI backend for the product"
+requires-python = ">=3.12"
+
+# ---- Ruff: linter + formatter (replaces flake8/isort/black) ----
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E", "F",   # pycodestyle / pyflakes
+    "I",        # import sorting (prevents import-order merge conflicts)
+    "B",        # bugbear (common bugs)
+    "UP",       # pyupgrade
+    "SIM",      # simplify
+]
+
+# ---- Mypy: static type checking ----
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+
+# ---- Pytest ----
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.coverage.run]
+source = ["app"]

@@ -1,0 +1,12 @@
+# Normalize line endings to LF in the repo regardless of developer OS.
+# Prevents Windows/Mac/Linux line-ending merge conflicts.
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files — never diff/merge
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary

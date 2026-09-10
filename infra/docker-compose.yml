@@ -1,0 +1,33 @@
+# Local development stack: SQL Server + backend + frontend.
+# Run from repo root:  docker compose -f infra/docker-compose.yml up --build
+# Tip: run only the DB (docker compose ... up -d db) and run the apps natively for faster reloads.
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong!Passw0rd" # local dev only — never reuse in real environments
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
+  backend:
+    build: ../backend
+    env_file: ../backend/.env
+    environment:
+      DATABASE_URL: "mssql+pyodbc://sa:YourStrong!Passw0rd@db:1433/product_db?driver=ODBC+Driver+18+for+SQL+Server&TrustServerCertificate=yes"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build: ../frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mssql-data:
